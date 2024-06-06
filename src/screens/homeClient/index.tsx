@@ -36,8 +36,8 @@ function HomeClient() {
   return (
     <>
       <div className="Home p-5">
-        <div className="flex justify-center items-center mt-8">
-          <img className="w-36" src={Logo} alt="Logo do Flamme" />
+        <div className="flex justify-center items-center mt-8" onClick={() => nav("/login")}>
+          <img className="w-36" src={Logo} alt="Logo do Flamme"  />
         </div>
 
         {/*CARROSSEL*/}
