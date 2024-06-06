@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Button } from "../../components/Button/Button";
 import auth  from "../../services/request/auth";
 import { useNavigate } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -14,7 +15,7 @@ const Login = () => {
     const resp = await auth({ email, password });
 
     if (resp !== null) {
-      return navigate("/");
+      return navigate("/catalogo-adm");
     }
 
     return alert("Usuário não encontrado!");
@@ -51,8 +52,9 @@ const Login = () => {
                 Esqueceu a senha?
               </a>
             </div>
-
+            <Link to="/catalogo-adm">
             <Button label="Entrar" onclick={handleLogin} />
+            </Link>
           </div>
         </div>
       </div>
