@@ -32,9 +32,9 @@ function EditInfo() {
   const [passwordCheck, setPasswordCheck] = useState<string>();
 
   const {
-    get: getUsers,
+    // get: getUsers,
     getForId: getUserId,
-    post: postUser,
+    // post: postUser,
     patch: patchUser,
   } = userController();
 
@@ -47,7 +47,7 @@ function EditInfo() {
     fetchData();
   }, [userId]);
 
-  console.log(userData);
+  console.log(userData, setUserId(1));
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;

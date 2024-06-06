@@ -1,6 +1,9 @@
-import { IText } from "../../utils/interfaces";
+interface ITextList {
+  text: string[];
+  classes: string;
+}
 
-export const BulletPointList = ({ text, classes }: IText) => {
+export const BulletPointList = ({ text, classes }: ITextList) => {
   const textArray = Array.isArray(text) ? text : [text];
 
   return (
