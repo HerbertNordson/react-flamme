@@ -7,7 +7,7 @@
   ],
   "headers": [
     {
-      "source": "/(.*)",
+      "source": "https://(.*)",
       "headers": [
         {
           "key": "X-Content-Type-Options",
@@ -24,7 +24,7 @@
       ]
     },
     {
-      "source": "/:path*",
+      "source": "https://:path*",
       "has": [
         {
           "type": "query",
