@@ -3,7 +3,7 @@ import { Text } from "../Text";
 interface IAroma {
   data: Array<string>;
   newData: (item: string) => void;
-  aroma: Array<string>;
+  aroma?: Array<string>;
 }
 
 export const Aroma = ({ data, newData, aroma }: IAroma) => {
@@ -15,7 +15,7 @@ export const Aroma = ({ data, newData, aroma }: IAroma) => {
           value={item}
           type="button"
           className={`border border-primary rounded py-2 px-3 text-sm text-center ${
-            aroma.find((el: string) => el === item)
+            aroma?.find((el: string) => el === item)
               ? "bg-primary text-white"
               : ""
           }`}

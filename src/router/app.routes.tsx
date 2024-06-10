@@ -6,7 +6,6 @@ import {
   Catalog,
   CheckoutBudget,
   Profile,
-  ViewProduct,
   ProductClient,
   AddCartClient,
   BuyClient,
