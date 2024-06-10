@@ -4,7 +4,7 @@ import { Text } from "../Text";
 interface IProps {
   value: string;
   price: number;
-  onclick?: (item: any) => void;
+  onclick: (item: any) => void;
 }
 
 export const Additional = ({ value, price, onclick }: IProps) => {
