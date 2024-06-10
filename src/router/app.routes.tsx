@@ -6,7 +6,10 @@ import {
   Catalog,
   CheckoutBudget,
   Profile,
+  ViewProduct,
   ProductClient,
+  AddCartClient,
+  BuyClient,
   RegisterInformation,
   HomeBudgetAdm,
   HomeClient,
@@ -35,6 +38,8 @@ export default function Routes() {
           path="/produto-cliente"
           element={<ProductClient isAdmin={false} />}
         />
+        <Route path="/carrinho-cliente" element={<AddCartClient />} />
+        <Route path="/comprar-cliente" element={<BuyClient />} />
         <Route path="/informações-cadastro" element={<RegisterInformation />} />
         <Route path="/informações-gerais" element={<Info />} />
         <Route path="/home-orçamentos" element={<HomeBudgetAdm />} />

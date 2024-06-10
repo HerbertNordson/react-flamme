@@ -6,48 +6,32 @@ import ButtonNavBarPerfil from "../../components/ButtonNavBarPerfil/index.tsx";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { userController } from "../../services/request/user.ts";
-
-interface IUser {
-  id: number;
-  name: string;
-  email: string;
-  password: string;
-  phone: string;
-  createdAt: string;
-}
+import { IUser } from "../../utils/interfaces.ts";
+import { useStoreContext } from "../../contexts/index.tsx";
 
 function EditInfo() {
-  //falta pegar o numero de id no localstorage
-  //não estou conseguindo efetuar o patch
+  const [userData, setUserData] = useState<IUser>({} as IUser);
+  const [passwordCheck, setPasswordCheck] = useState<string>("");
+  const { user } = useStoreContext();
 
-  const [userId, setUserId] = useState<number>(1);
-  const [userData, setUserData] = useState<IUser>({
-    id: 0,
-    name: "",
-    email: "",
-    password: "",
-    phone: "",
-    createdAt: "",
-  });
-  const [passwordCheck, setPasswordCheck] = useState<string>();
+  const { getForId: getUserId, patch: patchUser } = userController();
 
-  const {
-    // get: getUsers,
-    getForId: getUserId,
-    // post: postUser,
-    patch: patchUser,
-  } = userController();
+  async function fetchData() {
+    const id = localStorage.getItem("id") ?? 0;
+    const response = await getUserId(Number(id));
+    const data: IUser = {
+      id: response.id,
+      name: response.name,
+      email: response.email,
+      password: user.password,
+      phone: response.phone,
+    };
+    setUserData(data);
+  }
 
   useEffect(() => {
-    async function fetchData() {
-      const response = await getUserId(userId);
-      setUserData(response);
-    }
-
     fetchData();
-  }, [userId]);
-
-  console.log(userData, setUserId(1));
+  }, []);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -86,8 +70,8 @@ function EditInfo() {
             className="w-full px-4 py-4 mt-2 border rounded-md text-xs"
             type="text"
             name="name"
-            value={userData?.name}
-            placeholder={userData?.name}
+            value={userData.name}
+            placeholder={userData.name}
             onChange={handleChange}
           />
         </div>

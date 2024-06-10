@@ -1,10 +1,7 @@
-interface ITextList {
-  text: string[];
-  classes: string;
-}
+import { ITextList } from "../../utils/interfaces";
 
-export const BulletPointList = ({ text, classes }: ITextList) => {
-  const textArray = Array.isArray(text) ? text : [text];
+export const BulletPointList = ({ items, classes }: ITextList) => {
+  const textArray = Array.isArray(items) ? items : [items];
 
   return (
     <ul className={`${classes}`}>
