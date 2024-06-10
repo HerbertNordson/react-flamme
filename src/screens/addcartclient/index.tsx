@@ -190,12 +190,12 @@ Tem o tamanho de 4x4,5 e peso de 40g."
 
         <div className="ml-2 mt-8">
           <Text text="Aroma" />
-          <Aroma data={arr} />
+          <Aroma data={arr} newData={() => {}}/>
         </div>
 
         <div className="ml-2 mt-8">
           <Text text="Acréscimo" />
-          <Additional value="Saquinho de organza" price={0.5} />
+          <Additional value="Saquinho de organza" price={0.5} onclick={() => {}}/>
         </div>
 
         <div className="mt-3">
