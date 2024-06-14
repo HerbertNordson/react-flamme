@@ -12,6 +12,7 @@ import HomeBudgetAdm from "./homeBudgetAdm";
 import HomeClient from "./homeClient";
 import Info from "./Info";
 import EditInfo from "./EditInfomation";
+import Payment from "./payment";
 
 export {
   Cart,
@@ -28,4 +29,5 @@ export {
   HomeClient,
   Info,
   EditInfo,
+  Payment
 };
