@@ -4,7 +4,6 @@ import {
   Cart,
   AddProduct,
   Catalog,
-  CheckoutBudget,
   Profile,
   ProductClient,
   RegisterInformation,
@@ -25,7 +24,6 @@ export default function Routes() {
         <Route path="/login" element={<Login />} />
         <Route path="/adicionar-produto" element={<AddProduct />} />
         <Route path="/carrinho" element={<Cart />} />
-        <Route path="/checkout" element={<CheckoutBudget />} />
         <Route path="/perfil" element={<Profile />} />
         <Route
           path="/visualizar-produto"
