@@ -38,7 +38,6 @@ function AddProduct() {
   const click = async () => {
     setModel("ASV55");
     return await createProduct({
-      id: Math.round(Math.random()),
       name: name,
       description: description,
       aroma: aroma,
@@ -53,7 +52,7 @@ function AddProduct() {
 
   return (
     <>
-      <div className="AddProduct pb-40">
+      <div className="AddProduct">
         <div className="flex justify-center items-center mt-4">
           <Title text="Adicionar Produto" />
         </div>

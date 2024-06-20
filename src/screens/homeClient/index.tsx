@@ -20,7 +20,11 @@ import { transformPricePTBR } from "../../utils/scripts.ts";
 
 function HomeClient() {
   //IMAGENS DO CARROSSEL
-  const data = [{ id: "1" }, { id: "2" }, { id: "3" }];
+  const data = [
+    { id: "1"},
+    { id: "2"},
+    { id: "3"},
+  ];
 
   const { products, getProduct } = useStoreContext();
   const nav = useNavigate();

@@ -4,7 +4,6 @@ import { useState } from "react";
 import { Button } from "../../components/Button/Button";
 import auth from "../../services/request/auth";
 import { useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
 import { useStoreContext } from "../../contexts";
 import { IData } from "../../utils/interfaces";
 
@@ -13,6 +12,10 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const { setUser } = useStoreContext();
   const navigate = useNavigate();
+
+  function handleForgotPassword() {
+    navigate("/email-de-recuperacao");
+  }
 
   const handleLogin = async () => {
     const resp = await auth({ email, password });
@@ -56,13 +59,15 @@ const Login = () => {
                 placeholder="Digite sua senha"
                 value={password}
               />
-              <a className="forgot-password-login" href="#">
+              <a
+                className="forgot-password-login"
+                onClick={handleForgotPassword}
+              >
                 Esqueceu a senha?
               </a>
             </div>
-            <Link to="/catalogo-adm">
-              <Button label="Entrar" onclick={handleLogin} />
-            </Link>
+
+            <Button label="Entrar" onclick={handleLogin} />
           </div>
         </div>
       </div>

@@ -5,14 +5,11 @@ import CheckoutBudget from "./CheckoutBudget";
 import Login from "./login";
 import Profile from "./Profile";
 import ProductClient from "./Productclient";
-import AddCartClient from "./addcartclient";
-import BuyClient from "./Buyclient";
 import RegisterInformation from "./RegisterInformation";
 import HomeBudgetAdm from "./homeBudgetAdm";
 import HomeClient from "./homeClient";
 import Info from "./Info";
 import EditInfo from "./EditInfomation";
-import Payment from "./payment";
 
 export {
   Cart,
@@ -22,12 +19,9 @@ export {
   Login,
   Profile,
   ProductClient,
-  AddCartClient,
-  BuyClient,
   RegisterInformation,
   HomeBudgetAdm,
   HomeClient,
   Info,
   EditInfo,
-  Payment
 };
