@@ -1,7 +1,6 @@
 import { Title } from "../../components/Title";
 import { Text } from "../../components/Text";
 import { ButtonWhite } from "../../components/ButtonWhite/ButtonWhite";
-import { ButtonWhite2 } from "../../components/ButtonWhite2/index.tsx";
 import { SectionTitle } from "../../components/SectionTitle";
 import GrayBorder from "../../components/GrayBorder/index.tsx";
 import GrayBorderTop from "../../components/GrayBorderTop/index.tsx";
