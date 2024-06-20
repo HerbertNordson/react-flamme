@@ -20,9 +20,9 @@ import { transformPricePTBR } from "../../utils/scripts.ts";
 function HomeClient() {
   //IMAGENS DO CARROSSEL
   const data = [
-    { id: "1", image: "../../../public/img-carrossel.svg" },
-    { id: "2", image: "../../../public/img-carrossel.svg" },
-    { id: "3", image: "../../../public/img-carrossel.svg" },
+    { id: "1", image: "../../assets/img-carrossel.svg" },
+    { id: "2", image: "../../assets/img-carrossel.svg" },
+    { id: "3", image: "../../assets/img-carrossel.svg" },
   ];
 
   const { products, getProduct } = useStoreContext();
