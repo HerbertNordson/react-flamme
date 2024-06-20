@@ -6,7 +6,6 @@ import { SectionTitle } from "../../components/SectionTitle";
 import GrayBorderTop from "../../components/GrayBorderTop/index.tsx";
 import Product4 from "../../assets/product-img4.svg";
 import Ellipse from "../../components/Ellipse/index.tsx";
-import EditButton from "../../components/EditButton/index.tsx";
 import DeleteButton from "../../components/DeleteButton/index.tsx";
 import AlertButton1 from "../../components/AlertButton1/index.tsx";
 import AlertButton2 from "../../components/AlertButton2/index.tsx";
@@ -199,7 +198,10 @@ function Cart() {
             <div className="mt-4">
               <ButtonWhite2
                 label="Continuar comprando"
-                onclick={() => navigate("/")}
+                onclick={() => {
+                  click();
+                  navigate("/");
+                }}
               />
             </div>
           </div>
