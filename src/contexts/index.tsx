@@ -43,7 +43,6 @@ export const StoreProvider: React.FC<IProvider> = ({ children }) => {
   const deleteProduct = async (id: number) => {
     const response = await deleteCandle(id);
     if (!response) return;
-    window.location.reload();
   };
 
   useEffect(() => {

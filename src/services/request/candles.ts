@@ -54,7 +54,7 @@ export const candlesController = () => {
       }
     } catch (error: any) {
       if (error.request.status === 500 || error.code == "ERR_BAD_RESPONSE") {
-        return "Usuário atualizado com sucesso!";
+        return "Produto atualizado com sucesso!";
       }
       console.error(error);
       alert("Não foi possível alterar produto!");

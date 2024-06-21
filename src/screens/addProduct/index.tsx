@@ -387,7 +387,7 @@ function AddProduct() {
         )}
 
         <div className="flex justify-around mt-10">
-          <Link to="/home-loja" className="text-black">
+          <Link to="/catalogo-adm" className="text-black">
             <div className="p-4">
               <ButtonWhite label="Cancelar" onclick={() => {}} />
             </div>

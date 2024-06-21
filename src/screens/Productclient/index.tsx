@@ -64,6 +64,13 @@ function ViewProduct({ isAdmin }: IProps) {
     nav("/");
   }
 
+  async function deleteItem(id: number = 0) {
+    const response = await deleteProduct(id);
+    return response !== false
+      ? navigate("/catalogo-adm")
+      : alert("Não foi possível atualizar os dados.");
+  }
+
   function calculate(qtt: number) {
     let val = 0;
     if (product.options && qtt) {
@@ -224,14 +231,14 @@ function ViewProduct({ isAdmin }: IProps) {
           {isAdmin && (
             <div className="flex flex-col gap-2 mt-10">
               <ButtonWhite
-                label="Editar produto"
+                label={!page ? "Editar produto" : "Cancelar edição"}
                 classes="w-full"
                 onclick={() => setPage(!page)}
               />
               <Button2
                 label="Excluir produto"
                 classes="w-full"
-                onclick={() => deleteProduct(product.id)}
+                onclick={() => deleteItem(product.id)}
               />
             </div>
           )}

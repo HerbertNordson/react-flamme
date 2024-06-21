@@ -5,17 +5,112 @@ import GrayBorderTop from "../../components/GrayBorderTop";
 import { SectionTitle } from "../../components/SectionTitle";
 import { Title } from "../../components/Title";
 import { Text } from "../../components/Text";
-import { IProduct } from "../../contexts/interface";
+import { IExtra, IOptions, IProduct } from "../../contexts/interface";
 import { transformPricePTBR } from "../../utils/scripts";
+import { useStoreContext } from "../../contexts";
+import { useNavigate } from "react-router-dom";
 
 interface IData {
   product: IProduct;
 }
 
 const EditProduct = ({ product }: IData) => {
+  const { updateProduct } = useStoreContext();
+  const navigate = useNavigate();
+  async function update(data: IProduct) {
+    const response = await updateProduct(data);
+
+    return response !== false
+      ? navigate("/catalogo-adm")
+      : alert("Não foi possível remover o produto.");
+  }
+
+  function onSubmit(event: any) {
+    event.preventDefault();
+    const arr: Array<string> = [];
+    if (
+      event.target.ar1.value.length > 0 ||
+      event.target.ar2.value.length > 0
+    ) {
+      if (event.target.ar1.value.length > 0) {
+        arr.push(event.target.ar1.value);
+      }
+      if (event.target.ar2.value.length > 0) {
+        arr.push(event.target.ar2.value);
+      }
+    }
+
+    const tps: Array<string> = [];
+    if (
+      event.target.tape1.value.length > 0 ||
+      event.target.tape2.value.length > 0
+    ) {
+      if (event.target.tape1.value.length > 0) {
+        tps.push(event.target.tape1.value);
+      }
+      if (event.target.tape2.value.length > 0) {
+        tps.push(event.target.tape2.value);
+      }
+    }
+
+    const ex: IExtra = {} as IExtra;
+    if (event.target.exName.value.length > 0) {
+      ex.name = event.target.exName.value;
+      if (event.target.exPrice.value.length > 0) {
+        ex.price = event.target.exPrice.value;
+      } else {
+        alert("Por favor insira o preço do item extra.");
+      }
+    }
+
+    const opt: IOptions = {} as IOptions;
+    if (
+      event.target.min.value.length > 0 ||
+      event.target.max.value.length > 0 ||
+      event.target.price2.value.length > 0
+    ) {
+      if (event.target.min.value.length > 0) {
+        opt.min = event.target.min.value;
+      }
+      if (event.target.max.value.length > 0) {
+        opt.max = event.target.max.value;
+      }
+      if (event.target.price2.value.length > 0) {
+        opt.price = event.target.price2.value;
+      }
+    }
+
+    const productItem: IProduct = {
+      id: Math.round(Math.random()),
+      name:
+        event.target.name.value.length > 3
+          ? event.target.name.value
+          : product.name,
+      description:
+        event.target.description.value.length > 10
+          ? event.target.description.value
+          : product.description,
+      aroma: arr.length > 0 ? arr : product.aroma,
+      model: "ASV55",
+      price:
+        event.target.price.value.length > 0
+          ? +event.target.price.value
+          : product.price,
+      extras: ex.name && ex.price ? [ex] : product.extras,
+      options: opt.min && opt.max && opt.price ? [opt] : product.options,
+      tapes: tps.length > 0 ? tps : product.tapes,
+      quantity:
+        event.target.quantity.value.length > 0
+          ? +event.target.quantity.value
+          : product.quantity,
+    };
+
+    update(productItem);
+  }
+
   return (
     <div className="w-full">
-      <form className="px-7">
+      <form onSubmit={onSubmit} className="px-7">
         <div className="flex justify-center items-center mt-4">
           <Title text="Edição do produto" />
         </div>
@@ -96,6 +191,7 @@ const EditProduct = ({ product }: IData) => {
             <input
               className="mt-2 p-2 w-36 border rounded-md text-xs px-3 h-11"
               type="text"
+              name="min"
               placeholder={
                 product.options && product.options.length > 0
                   ? `${product.options[0].min}`
@@ -109,6 +205,7 @@ const EditProduct = ({ product }: IData) => {
             <input
               className="mt-2 p-2 w-36 border rounded-md text-xs px-3 h-11"
               type="text"
+              name="max"
               placeholder={
                 product.options && product.options.length > 0
                   ? `${product.options[0].max}`
@@ -123,6 +220,7 @@ const EditProduct = ({ product }: IData) => {
           <input
             className="mt-2 p-2 w-36 border rounded-md text-xs px-3 h-11"
             type="text"
+            name="price2"
             placeholder={
               product.options && product.options.length > 0
                 ? `${transformPricePTBR(product.options[0].price)}`
@@ -147,6 +245,7 @@ const EditProduct = ({ product }: IData) => {
             <input
               className="mt-2 p-2 w-36 border rounded-md text-xs px-3 h-11"
               type="text"
+              name="ar1"
               placeholder={
                 product.aroma && product.aroma.length ? product.aroma[0] : ""
               }
@@ -158,6 +257,7 @@ const EditProduct = ({ product }: IData) => {
             <input
               className="mt-2 p-2 w-36 border rounded-md text-xs px-3 h-11"
               type="text"
+              name="ar2"
               placeholder={
                 product.aroma && product.aroma.length ? product.aroma[1] : ""
               }
@@ -176,6 +276,7 @@ const EditProduct = ({ product }: IData) => {
           <input
             className="mt-2 p-2 w-80 border rounded-md text-xs px-3 h-11"
             type="text"
+            name="exName"
             placeholder={
               product.extras && product.extras.length
                 ? product.extras[0].name
@@ -189,6 +290,7 @@ const EditProduct = ({ product }: IData) => {
           <input
             className="mt-2 p-2 w-36 border rounded-md text-xs px-3 h-11"
             type="text"
+            name="exPrice"
             placeholder={
               product.extras && product.extras.length
                 ? `${product.extras[0].price}`
@@ -214,6 +316,7 @@ const EditProduct = ({ product }: IData) => {
               <input
                 className="mt-2 p-2 w-36 border rounded-md text-xs px-3 h-11"
                 type="text"
+                name="tape1"
                 placeholder={
                   product.tapes && product.tapes.length ? product.tapes[0] : ""
                 }
@@ -225,6 +328,7 @@ const EditProduct = ({ product }: IData) => {
               <input
                 className="mt-2 p-2 w-36 border rounded-md text-xs px-3 h-11"
                 type="text"
+                name="tape2"
                 placeholder={
                   product.tapes && product.tapes.length ? product.tapes[1] : ""
                 }
@@ -235,7 +339,7 @@ const EditProduct = ({ product }: IData) => {
 
         <div className="flex justify-around mt-10">
           <div className="p-4 h-20">
-            <Button2 label="Salvar" type="submit" classes="my-0"/>
+            <Button2 label="Salvar" type="submit" classes="my-0" />
           </div>
         </div>
 
