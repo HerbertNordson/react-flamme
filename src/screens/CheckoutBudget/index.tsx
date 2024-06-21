@@ -37,6 +37,8 @@ export const CheckoutBudget = ({ cart, total, aditional, price }: IProps) => {
     CPF - ${cpf}, Tel - ${cel}, Email - ${email}.
     Endereço - ${street} ${num}, ${dist} - ${city} / ${cep}
     Complemento - ${comp}
+
+    Produtos selecionados: ${cart}
   `;
 
   async function orderC() {
@@ -280,7 +282,11 @@ export const CheckoutBudget = ({ cart, total, aditional, price }: IProps) => {
           />
         </div>
 
-        <Button label="Enviar orçamento" classes="w-full my-5 py-4" onclick={orderC} />
+        <Button
+          label="Enviar orçamento"
+          classes="w-full my-5 py-4"
+          onclick={orderC}
+        />
 
         <ButtonNavBarCart />
       </div>
