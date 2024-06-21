@@ -32,13 +32,23 @@ export const CheckoutBudget = ({ cart, total, aditional, price }: IProps) => {
   const [dist, setDist] = useState("");
   const { orders } = candlesController();
 
+  const prods = cart.map(
+    (el: IProduct) =>
+      `*produto*: ${el.name}, *preço*: ${el.price / el.quantity}, *fitas*: ${
+        el.tapes
+      }, *acrecimos*: ${(el.extras[0].name, el.extras[0].price)}, *total*: ${
+        el.price
+      }
+        `
+  );
+
   const msg = `Olá, me chamo ${name} e fiz um orçamento na Flamme Web App.
     Segue meus dados: 
     CPF - ${cpf}, Tel - ${cel}, Email - ${email}.
     Endereço - ${street} ${num}, ${dist} - ${city} / ${cep}
     Complemento - ${comp}
 
-    Produtos selecionados: ${cart}
+    Produtos selecionados: ${prods}
   `;
 
   async function orderC() {
