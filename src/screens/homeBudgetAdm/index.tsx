@@ -8,6 +8,7 @@ import ButtonNavBarAddProduct from "../../components/ButtonNavBarAddProduct";
 import { candlesController } from "../../services/request/candles.ts";
 import { useEffect, useState } from "react";
 import { IProduct } from "../../contexts/interface.ts";
+import { transformPricePTBR } from "../../utils/scripts.ts";
 
 export interface IOrder {
   client_name: string;
@@ -59,9 +60,11 @@ function HomeBudgetAdm() {
                         <Text text={el.name} />
                         <Text text={`Quantidade: ${el.quantity}`} />
                         <Text
-                          text={`Preço unitário: ${el.price / el.quantity}`}
+                          text={`Preço unitário: ${transformPricePTBR(
+                            el.price / el.quantity
+                          )}`}
                         />
-                        <Text text={`Preço: ${el.price}`} />
+                        <Text text={`Preço: ${transformPricePTBR(el.price)}`} />
                       </div>
                     ))}
                     <Text text="Envio em até 7 dias úteis" />
