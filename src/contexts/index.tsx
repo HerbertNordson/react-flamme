@@ -33,7 +33,6 @@ export const StoreProvider: React.FC<IProvider> = ({ children }) => {
   const createProduct = async (data: IProduct) => {
     const response = await postCandle(data);
     if (!response) return;
-    window.location.href = "/";
   };
 
   const updateProduct = async (data: IProduct) => {

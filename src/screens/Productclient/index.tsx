@@ -27,6 +27,9 @@ import { Button4 } from "../../components/Button4/index.tsx";
 import ButtonNavBarAddProduct from "../../components/ButtonNavBarAddProduct/index.tsx";
 import { useState } from "react";
 import { useCartStoreContext } from "../../contexts/Cart/index.tsx";
+import { ButtonWhite } from "../../components/ButtonWhite/ButtonWhite.tsx";
+import { Button2 } from "../../components/Button2/index.tsx";
+import EditProduct from "../EditProduct/index.tsx";
 interface IProps {
   isAdmin: Boolean;
 }
@@ -45,7 +48,7 @@ function ViewProduct({ isAdmin }: IProps) {
     },
   };
   const navigate = useNavigate();
-  const { product } = useStoreContext();
+  const { product, deleteProduct } = useStoreContext();
   const { addToCart } = useCartStoreContext();
   const arr =
     product && product.aroma ? product.aroma.filter((el) => el.length > 0) : [];
@@ -54,9 +57,10 @@ function ViewProduct({ isAdmin }: IProps) {
   const [ex, setEx] = useState<boolean>(false);
   const [aroma, setAroma] = useState<Array<string>>([] as Array<string>);
   const [newExtra, setNewExtra] = useState<any>();
+  const [page, setPage] = useState<boolean>(false);
+  const nav = useNavigate();
 
   function back() {
-    const nav = useNavigate();
     nav("/");
   }
 
@@ -214,6 +218,24 @@ function ViewProduct({ isAdmin }: IProps) {
               />
             ))}
           </div>
+
+          {page && <EditProduct product={product} />}
+
+          {isAdmin && (
+            <div className="flex flex-col gap-2 mt-10">
+              <ButtonWhite
+                label="Editar produto"
+                classes="w-full"
+                onclick={() => setPage(!page)}
+              />
+              <Button2
+                label="Excluir produto"
+                classes="w-full"
+                onclick={() => deleteProduct(product.id)}
+              />
+            </div>
+          )}
+
           {isAdmin && <ButtonNavBarAddProduct />}
 
           {!isAdmin && (

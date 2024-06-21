@@ -42,8 +42,7 @@ function Cart() {
           {
             client_name: response.name,
             candles: cart,
-          },
-          response.id
+          }
         );
         return navigate("/checkout");
       } catch (error) {
