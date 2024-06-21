@@ -30,6 +30,7 @@ import { useCartStoreContext } from "../../contexts/Cart/index.tsx";
 import { ButtonWhite } from "../../components/ButtonWhite/ButtonWhite.tsx";
 import { Button2 } from "../../components/Button2/index.tsx";
 import EditProduct from "../EditProduct/index.tsx";
+import { linkStaticWpp } from "../../utils/constants.ts";
 interface IProps {
   isAdmin: Boolean;
 }
@@ -73,7 +74,7 @@ function ViewProduct({ isAdmin }: IProps) {
 
   function calculate(qtt: number) {
     let val = 0;
-    if (product.options && qtt) {
+    if (product.options && product.options[0].min > 0 && qtt) {
       setQtty(qtt);
 
       if (qtt < product.options[0].min) {
@@ -83,6 +84,10 @@ function ViewProduct({ isAdmin }: IProps) {
 
       val = product.options[0].price * qtt;
       return setTotal(val);
+    } else {
+      setQtty(qtt);
+      setTotal(product.price * qtt);
+      return;
     }
     setQtty(0);
     return setTotal(0);
@@ -262,7 +267,9 @@ function ViewProduct({ isAdmin }: IProps) {
               </div>
 
               <div className="ml-2">
-                <Whastsappcontato />
+                <a href={linkStaticWpp}>
+                  <Whastsappcontato />
+                </a>
               </div>
 
               <div className="max-w-screen-lg mx-2">
