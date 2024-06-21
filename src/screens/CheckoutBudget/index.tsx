@@ -34,11 +34,11 @@ export const CheckoutBudget = ({ cart, total, aditional, price }: IProps) => {
 
   const prods = cart.map(
     (el: IProduct) =>
-      `*produto*: ${el.name}, *preço*: ${el.price / el.quantity}, *fitas*: ${
-        el.tapes
-      }, *acrecimos*: ${(el.extras[0].name, el.extras[0].price)}, *total*: ${
-        el.price
-      }
+      `*produto*: ${el.name}, *preço*: ${transformPricePTBR(
+        el.price / el.quantity
+      )}, *fitas*: ${el.tapes}, *acrecimos*: ${
+        (el.extras[0].name, transformPricePTBR(el.extras[0].price))
+      }, *total*: ${transformPricePTBR(el.price)}
         `
   );
 
