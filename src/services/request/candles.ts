@@ -1,4 +1,5 @@
 import { IProduct } from "../../contexts/interface";
+import { IOrder } from "../../screens/homeBudgetAdm";
 import { api } from "../api";
 
 export const candlesController = () => {
@@ -98,12 +99,12 @@ export const candlesController = () => {
     try {
       const response = await api.get(`orders`);
       if (response.status === 200) {
-        return response.data.candles;
+        return response.data;
       }
     } catch (error) {
       console.error(error);
       console.log("Erro ao tentar buscar ordens. Tente novamente!");
-      return false;
+      return [] as Array<IOrder>;
     }
   }
 
